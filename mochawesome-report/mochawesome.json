@@ -1,0 +1,337 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 9,
+    "passes": 7,
+    "pending": 0,
+    "failures": 2,
+    "start": "2020-11-23T10:51:55.008Z",
+    "end": "2020-11-23T10:54:02.687Z",
+    "duration": 127679,
+    "testsRegistered": 9,
+    "passPercent": 77.77777777777779,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "df2ff05a-1a56-4ffd-9dee-193f6ba56248",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [
+        {
+          "title": "\"before all\" hook in \"{root}\"",
+          "fullTitle": "\"before all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 3640,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "await puppeteer.registerCustomQueryHandler('shadow', QueryHandler);\n  global.expect = expect;\n  global.browser = await puppeteer.launch(opts);",
+          "err": {},
+          "uuid": "1562a9d2-b2c9-4264-ad75-f636157ac985",
+          "parentUUID": "df2ff05a-1a56-4ffd-9dee-193f6ba56248",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [
+        {
+          "title": "\"after all\" hook in \"{root}\"",
+          "fullTitle": "\"after all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 15,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "browser.close();\nsetTimeout( () => { cmd.run('node server.js');}, 5000);    \nsetTimeout(() => {opn('http://localhost:9988');}, 2000);\nglobal.browser = globalVariables.browser;\nglobal.expect = globalVariables.expect;",
+          "err": {},
+          "uuid": "01c85efa-6077-423e-a74d-0f354c4243cd",
+          "parentUUID": "df2ff05a-1a56-4ffd-9dee-193f6ba56248",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6bdd6917-34a1-4e2d-8cd0-99c6d0793d97",
+          "title": "MSB Web Home page",
+          "fullFile": "D:\\dip-automation\\test\\sample.spec.js",
+          "file": "\\test\\sample.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"MSB Web Home page\"",
+              "fullTitle": "MSB Web Home page \"before all\" hook in \"MSB Web Home page\"",
+              "timedOut": false,
+              "duration": 14097,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "/* Before hook for mocha testing, This code will be executed before each testcases */\n\n\t\tpage = await browser.newPage(); // Opened new tab \n\t\t//\tpage.on('console', consoleObj => console.log(consoleObj.text())); // To display console log inside evaluate function\n\t\tawait page.goto(\"https://ms.healthline.com\",{\n\t\t\t//waitUntil: 'networkidle2',\n\t\t\t// Remove the timeout\n\t\t\ttimeout: 50000\n\t\t});",
+              "err": {},
+              "uuid": "57e56764-6a9c-4a4d-b071-d2931f1dab73",
+              "parentUUID": "6bdd6917-34a1-4e2d-8cd0-99c6d0793d97",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"MSB Web Home page\"",
+              "fullTitle": "MSB Web Home page \"after all\" hook in \"MSB Web Home page\"",
+              "timedOut": false,
+              "duration": 82,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "/* After hook for mocah testing, This code will be executed after each testcases */ \n\t\tawait page.close();",
+              "err": {},
+              "uuid": "cee208fb-3b18-478f-9c41-18a6b37656da",
+              "parentUUID": "6bdd6917-34a1-4e2d-8cd0-99c6d0793d97",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC-1112 *** Accept cookies and click on more information",
+              "fullTitle": "MSB Web Home page TC-1112 *** Accept cookies and click on more information",
+              "timedOut": false,
+              "duration": 1765,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var messages = []; // Declared messages array to hold the errors\ntry { // Try for privecy popup\n\t// Waited for app-prvary tag to load\n\tawait page.waitForSelector(\"app-privacy\", {\n\t\tvisible: true,\n\t  });\n    const privacyPopup = await page.$(\"app-privacy\");  //locate app privacy pop-up\n\ttry { \n\t\tawait page.waitForSelector(\"shadow/div.privacy-message-button-container\", {\n\t\t\tvisible: true,\n\t\t  });\n\t\tconst container = await page.$(\"shadow/div.privacy-message-button-container\");\n\t\t//waited for accept button to load\n\t\tawait page.waitForSelector(\"shadow/together-button\", {\n\t\t\tvisible: true,\n\t\t  });\n\t\t\n\t\t//located ACCEPT button\n        const acceptBtn = await container.$$(\"shadow/together-button\");\n\t\tawait acceptBtn[0].click();  // Clicked ACCEPT button\n\t} catch (e) {\n\t\t// Error will be catch here if element for 'ACCEPT' button is not located, then adding error message to messages\n\t\tmessages.push(\"Unable to locate 'Aceept' button from privacy policy popup\");\n\t}\n\t\n\t\n} catch (e) {\n\t// Error will be catch here if element for 'Privacy Policy Popup' is not located, then adding error message to messages\n\tmessages.push(\"Privacy policy popup not displaying when cookie is cleared from the browser\");\n}\nerrormsg=\"\";\nmessages.forEach(function (item) {\n\terrormsg = errormsg + \" \" + item + \"\\n\";\n});\n\t\n// Assertion for error message\nexpect(errormsg).to.equal('')",
+              "err": {},
+              "uuid": "9ad32e6c-0211-4e6f-bdc6-35bff2135348",
+              "parentUUID": "6bdd6917-34a1-4e2d-8cd0-99c6d0793d97",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-1112 *** Check other links",
+              "fullTitle": "MSB Web Home page TC-1112 *** Check other links",
+              "timedOut": false,
+              "duration": 48112,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "var messages = []; // Declared messages array to hold the errors\ntry { // Try for privecy popup\n\t\n\t// Waited for app-prvary tag to load\n\tawait page.waitForSelector(\"#app-wrapper > div > div.nav > together-app-nav\", {\n\t\tvisible: true,\n\t  });\n\tconst privacyPopup = await page.$(\"#app-wrapper > div > div.nav > together-app-nav\");  //locate app privacy pop-up\n\ttry { \n\t\t//document.querySelector(\"#app-wrapper > div > div.nav > together-app-nav\").shadowRoot.querySelector(\"div > app-links-tc\").shadowRoot.querySelector(\"div > div.links-list > a:nth-child(1) > together-highlight-text > div\")\n\t\t\n\t\t//waited for accept button to load\n\t\tawait page.waitForSelector(\"shadow/.links-list > a\", {\n\t\t\tvisible: true,\n\t\t  });\n\t\n\t\t//located ACCEPT button\n\t\tconst acceptBtn = await page.$(\"shadow/.links-list > a\");\n\t\tawait acceptBtn.click();  // Clicked ACCEPT button\n\t\t\n\t\tconst newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));  // declare promise\n\t\tconst page2 = await newPagePromise; // For define new tab\n\t\tlet pages = await browser.pages(); // To find number of opened tabs\n\t\n\t\n\t\t// Checking the URL of the webpage opened in new tab is for Play Store, If it's not then add the error message in messages\n\t\tif (String(pages[2].url()).indexOf(\"https://www.healthline.com/about\") == -1) {\n\t\t\tmessages.push(\"About Healthline link is not redirecting to correct URL\");\n\t\t}\n\t//\tconst resp=await pages[2].waitForNavigation();\n\t\t\n\t\tawait  pages[2].waitForSelector(\"h1 > span\", {\n\t\t\tvisible: true,\n\t\t  });\n\t\tconst body = await pages[2].$(\"h1 > span\");\n\t\tconst bodyTxt = await pages[2].evaluate(body => body.innerText, body);\n\t\t console.log(\"contents ******************* ---- \"+bodyTxt);\n\t\t\n\t\tif (String(bodyTxt).indexOf(\"You’re on a journey to health and wellness. And we’re right there with you.\") == -1) {\n\t\t\tmessages.push(\"About Healthline link is not redirecting to correct URL\");\n\t\t}\n\t\t\n\t\n\t\tawait pages[2].close(); // Closed newly opened tab\n\t\n\t} catch (e) {\n\t\tconsole.log(e);\n\t\t// Error will be catch here if element for 'ACCEPT' button is not located, then adding error message to messages\n\t\tmessages.push(\"Unable to locate 'About Healthlie link in left navbar\");\n\t}\n\n//3rd link from navbar\n\ntry { \n\t\n\tawait page.waitForSelector(\"shadow/.links-list a\", {\n\t\tvisible: true,\n\t  });\n\t//located links list\n\tconst lnks = await page.$$(\"shadow/.links-list a\");\n\tawait lnks[2].click();  // Clicked 3rd link\n\tconst newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));  // declare promise\n\tconst page2 = await newPagePromise; // For define new tab\n\tlet pages = await browser.pages(); // To find number of opened tabs\n\tconsole.log(String(pages[2].url()));\n\t// Checking the URL of the webpage opened in new tab is for Privacy policy, If it's not then add the error message in messages\n\tif (String(pages[2].url()).indexOf(\"healthline.com/privacy-policy\") == -1) {\n\t\tmessages.push(\"Privacy Policy link is not redirecting to correct URL\");\n\t}\n\n\tawait  pages[2].waitForSelector(\"h1 strong\", {\n\t\tvisible: true,\n\t  });\n\tconst privacyh1 = await pages[2].$(\"h1 strong\");\n\n\tconst bodyTxt = await pages[2].evaluate(privacyh1 => privacyh1.innerText, privacyh1);\n\tconsole.log(\"contents ******************* ---- \"+bodyTxt);\n\t\t\n\tif (String(bodyTxt).indexOf(\"Privacy Policy\") == -1) {\n\t\tmessages.push(\"Privacy Policy link is not redirecting to correct page\");\n\t}\n\n    await pages[2].close(); // Closed newly opened tab\n\n } catch (e) {\n\tconsole.log(e);\n\t// Error will be catch here if element for 'Privacy Policy' link is not located, then adding error message to messages\n\tmessages.push(\"Unable to locate 'Privacy Policy link in left navbar\");\n}\n\n\n//4th link from navbar\n\ntry { \n\t\n\tawait page.waitForSelector(\"shadow/.links-list a\", {\n\t\tvisible: true,\n\t  });\n\t//located links list\n\tconst lnks = await page.$$(\"shadow/.links-list a\");\n\tawait lnks[3].click();  // Clicked 3rd link\n\tconst newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));  // declare promise\n\tconst page2 = await newPagePromise; // For define new tab\n\tlet pages = await browser.pages(); // To find number of opened tabs\n\tconsole.log(String(pages[2].url()));\n\t// Checking the URL of the webpage opened in new tab is for Privacy policy, If it's not then add the error message in messages\n\tif (String(pages[2].url()).indexOf(\"https://privacyportal.onetrust.com/webform/79ba7c84-ebc2-4740-8d11-bf1cc4501e59/6bfe1af7-9a77-4c12-900e-3b808accdb22\") == -1) {\n\t\tmessages.push(\"Do not sell my Info link is not redirecting to correct URL\");\n\t}\n\n\ttry{\n\tawait  pages[2].waitForSelector(\"#dsar-webform-header-logo\", {\n\t\tvisible: true,\n\t  });\n\tconst logo = await pages[2].$(\"#dsar-webform-header-logo\");\n\t} catch (e) {\n\t\tconsole.log(e);\n\t\t// Error will be catch here if element for 'Privacy Policy' link is not located, then adding error message to messages\n\t\tmessages.push(\"Do not sell my Info link is not redirecting to correct page\");\n\t}\n\t\n\n    await pages[2].close(); // Closed newly opened tab\n\n } catch (e) {\n\tconsole.log(e);\n\t// Error will be catch here if element for 'Privacy Policy' link is not located, then adding error message to messages\n\tmessages.push(\"Unable to locate 'Do not sell my Info link in left navbar\");\n}\n\n\n//5th link from navbar\n\ntry { \n\t\n\tawait page.waitForSelector(\"shadow/.links-list a\", {\n\t\tvisible: true,\n\t  });\n\t//located links list\n\tconst lnks = await page.$$(\"shadow/.links-list a\");\n\tawait lnks[4].click();  // Clicked 3rd link\n\tconst newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));  // declare promise\n\tconst page2 = await newPagePromise; // For define new tab\n\tlet pages = await browser.pages(); // To find number of opened tabs\n\tconsole.log(String(pages[2].url()));\n\t// Checking the URL of the webpage opened in new tab is for Privacy policy, If it's not then add the error message in messages\n\tif (String(pages[2].url()).indexOf(\"healthline.com/terms-of-use\") == -1) {\n\t\tmessages.push(\"Terms of Use link is not redirecting to correct URL\");\n\t}\n\n\tawait  pages[2].waitForSelector(\"h1\", {\n\t\tvisible: true,\n\t  });\n\tconst termh1 = await pages[2].$(\"h1\");\n\n\tconst bodyTxt = await pages[2].evaluate(termh1 => termh1.innerText, termh1);\n\tconsole.log(\"contents ******************* ---- \"+bodyTxt);\n\t\t\n\tif (String(bodyTxt).indexOf(\"Terms of Use\") == -1) {\n\t\tmessages.push(\"Term of Use link is not redirecting to correct page\");\n\t}\n\n    await pages[2].close(); // Closed newly opened tab\n\n } catch (e) {\n\tconsole.log(e);\n\t// Error will be catch here if element for 'Privacy Policy' link is not located, then adding error message to messages\n\tmessages.push(\"Unable to locate 'Term of Use link in left navbar\");\n}\n\n//6th link from navbar\n\ntry { \n\t\n\tawait page.waitForSelector(\"shadow/.links-list a\", {\n\t\tvisible: true,\n\t  });\n\t//located links list\n\tconst lnks = await page.$$(\"shadow/.links-list a\");\n\tawait lnks[5].click();  // Clicked 3rd link\n\tconst newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));  // declare promise\n\tconst page2 = await newPagePromise; // For define new tab\n\tlet pages = await browser.pages(); // To find number of opened tabs\n\tconsole.log(String(pages[2].url()));\n\t// Checking the URL of the webpage opened in new tab is for Privacy policy, If it's not then add the error message in messages\n\tif (String(pages[2].url()).indexOf(\"healthline.com/about?ref=footer#contact-us\") == -1) {\n\t\tmessages.push(\"Contact Us link is not redirecting to correct URL\");\n\t}\n\t \n\tawait  pages[2].waitForSelector(\"#contact-us h2\", {\n\t\tvisible: true,\n\t  });\n\tconst contacth1 = await pages[2].$(\"#contact-us h2\");\n\n\tconst bodyTxt = await pages[2].evaluate(contacth1 => contacth1.innerText, contacth1);\n\tconsole.log(\"contents ******************* ---- \"+bodyTxt);\n\t\t\n\tif (String(bodyTxt).indexOf(\"CONTACT US\") == -1) {\n\t\tmessages.push(\"Contact Us link is not redirecting to correct page\");\n\t}\n\n    await pages[2].close(); // Closed newly opened tab\n\n } catch (e) {\n\tconsole.log(e);\n\t// Error will be catch here if element for 'Privacy Policy' link is not located, then adding error message to messages\n\tmessages.push(\"Unable to locate 'Contact Us link in left navbar\");\n}\n\n//2nd link from navbar\n\ntry { \n\t\n\tawait page.waitForSelector(\"shadow/.links-list a\", {\n\t\tvisible: true,\n\t  });\n\t//located links list\n\tconst lnks = await page.$$(\"shadow/.links-list a\");\n\tawait lnks[1].click();  // Clicked 3rd link\n//\tconst waitforNav = page.waitForNavigation({ waitUntil: 'networkidle0' ,timeout: 15000});\n\t//await waitforNav;\n\t\n\t\n\tawait  page.waitForSelector(\"#__next button\", {\n\t\tvisible: true,\n\t  });\n\tconst backBtn = await page.$$(\"#__next button\");\n\n\tconsole.log(String(page.url()));\n\t// Checking the URL of the webpage opened in new tab is for Privacy policy, If it's not then add the error message in messages\n\tif (String(page.url()).indexOf(\"healthline.com/privacy-settings\") == -1) {\n\t\tmessages.push(\"Privacy settings link is not redirecting to correct URL\");\n\t}\n\n\t//await page.waitForTimeout(17000);\n\tawait backBtn[1].click();  // Clicked back button\n\t//await page.waitForChanges();\n\tconst newPagePromise1 = new Promise(x => browser.once('targetcreated', target => x(target.page())));  // declare promise\n\t\tconst page3 = await newPagePromise1; // For define new tab\n\t\tlet pages = await browser.pages(); // To find number of opened tabs\n\t\n\t\t\n\tif (String(pages[1].url()).indexOf(\"ms.healthline.com\") == -1) {\n\t\tawait page.goto(\"https://ms.healthline.com\",{\ntimeout: 500000\n\t\t});\n\t}\n\n    \n\n } catch (e) {\n\tconsole.log(e);\n\t// Error will be catch here if element for 'Privacy Policy' link is not located, then adding error message to messages\n\tmessages.push(\"Unable to locate 'Privacy settings link in left navbar\");\n}\n} catch (e) {\n\t// Error will be catch here if element for 'Privacy Policy Popup' is not located, then adding error message to messages\n\tmessages.push(\"Left Navbar is missing\");\n}\n\t\nerrormsg=\"\";\nmessages.forEach(function (item) {\n\terrormsg = errormsg + \" \" + item + \"\\n\";\n});\n\t\t\n// Assertion for error message\nexpect(errormsg).to.equal('')",
+              "err": {
+                "message": "AssertionError: expected ' Do not sell my Info link is not redirecting to correct URL\\n' to equal ''",
+                "estack": "AssertionError: expected ' Do not sell my Info link is not redirecting to correct URL\\n' to equal ''\n    at Context.<anonymous> (test\\sample.spec.js:335:24)",
+                "diff": "-  Do not sell my Info link is not redirecting to correct URL\n"
+              },
+              "uuid": "e63d1b8f-e5e3-4df7-858f-8356babe637e",
+              "parentUUID": "6bdd6917-34a1-4e2d-8cd0-99c6d0793d97",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-1014 and TC-1015 *** Locate and verify \"download on the app store\" button and \"Get it in Google Play\" button on the join the community card",
+              "fullTitle": "MSB Web Home page TC-1014 and TC-1015 *** Locate and verify \"download on the app store\" button and \"Get it in Google Play\" button on the join the community card",
+              "timedOut": false,
+              "duration": 7440,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var messages = []; // Declared messages array to hold the errors\n\t\t\n\t\ttry { // Try for welcomecard\n\t\t\tawait page.waitForSelector(\"shadow/together-welcome\", {\n\t\t\t\tvisible: true,\n\t\t\t  });\n\t\t\t// Located Welcome card section \n\t\t\tconst welcomecard = await page.$(\"shadow/together-welcome > div\"); \n\t\t\t \n\t\t\t// Checking welcome card header\n\t\t\ttry {\n\t\t\t\t// Located Welcome card heading\n\t\t\t\tconst welcomeHeader = await page.$(\"shadow/div.together-welcome-header\"); \n\t\t\t\t\n\t\t\t\t// Found the text of welcome card header\n\t\t\t\tconst txt = await page.evaluate(welcomeHeader => welcomeHeader.innerText, welcomeHeader);\n\t\t\t\t// To display the text inside console\n\t\t\t\tconsole.log(\"Welcome card Header's heading is -->\" + txt);\n\t\t\t\t\n\t\t\t\t// To checking that Heading text of welcome card is exactly as per requirement, If not add error message to messages array\n\t\t\t\tif (String(txt).indexOf(\"Multiple Sclerosis Community\") == -1) {\n\t\t\t\t\tmessages.push(\"Header inside Welcome Card is not proper on MSB Web Home Page\");\n\t\t\t\t}\n\t\t\t} catch (e) {\n\t\t\t\t// If header inside welcome card is not located, Error will be catch here & So we are adding error message to messages \n\t\t\t\tmessages.push(\"Header inside Welcome Card is missing on MSB Web Home Page \");\n\t\t\t}\n\t\t\t// Click download on appstore button and check that correct page is opening\n\t\t\ttry {\n\t\t\t\tawait page.waitForSelector(\"shadow/div.store-box\", {\n\t\t\t\t\tvisible: true,\n\t\t\t\t  });\n\t\t\t\t// Located App Store Button from Welcome Banner \n\t\t\t\tconst AppStoreBtn = await page.$(\"shadow/div.store-box > a:nth-child(1)\"); \n\t\t\t\t\n\t\t\t\t// To deal with new tab opened by clicking link that opening the webpage in new tab \n\t\t\t\tconst newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));  // declare promise\n\t\t\t\tawait AppStoreBtn.click(); // Clicked on the button\n\t\t\t\t   \n\t\t\t\tconst page2 = await newPagePromise; // Define New Browser tab\n\t\t\t\tlet pages = await browser.pages(); // To find out opened tabs of browser\n\t\t\t    // Checking the URL of the webpage opened in new tab is for App Store, If it's not then add the error message in messages\n\t\t\t\tif (String(pages[2].url()).indexOf(\"https://apps.apple.com/us/app/id1040195462?mt=8\") == -1) {\n\t\t\t\t\tmessages.push(\"Download on the App Store button is not redirecting to correct URL\");\n\t\t\t\t}\n\t\t\t\tawait pages[2].close(); // Closed newly opened tab \n\t\t\t} catch (e) {\n\t\t\t\t// If App store button inside welcome Banner is not located, Error will be catch here & So we are adding error message to messages \n\t\t\t\tmessages.push(\"Download on the App Store button inside Welcome Card is missing on MSB Web Home Page\"+e);\n\t\t\t}\n\t\t\t// Click get it on Google Play button and check that correct page is opening \n\t\t\ttry {\n\t\t\t\t// Located Google Play button inside Welcome Banner \n\t\t\t\tconst googlePlayBtn = await page.$(\"shadow/div.store-box > a:nth-child(2)\"); \n\t\t\t\t\n\t\t\t\t// To deal with new tab opened by clicking link that opening the webpage in new tab \n\t\t\t\tconst newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));  // declare promise\n\t\t\t\tawait googlePlayBtn.click(); // For click on Google Play button\n\t\t\t\t\t\t\t\n\t\t\t\tconst page2 = await newPagePromise; // For define new tab\n\t\t\t\tlet pages = await browser.pages(); // To find number of opened tabs\n\t\t\t\t// Checking the URL of the webpage opened in new tab is for Play Store, If it's not then add the error message in messages\n\t\t\t\tif (String(pages[2].url()).indexOf(\"https://play.google.com/store/apps/details?id=com.healthline.msbuddy\") == -1) {\n\t\t\t\t\tmessages.push(\"Get it on Google Play button is not redirecting to correct URL\");\n\t\t\t\t}\n\t\t\t\tawait pages[2].close(); // Closed newly opened tab\n\t\t\t} catch (e) {\n\t\t\t\t// If Google Play inside welcome card is not located, Error will be catch here & So we are adding error message to messages \n\t\t\t\tmessages.push(\"Get it on Google Play button inside Welcome Card is missing on MSB Web Home Page\");\n\t\t\t}\n\t\t} catch (e) { // Catch for welcomecard, If welcome card section is not located Add error message to messages\n\t\t\tmessages.push(\"Welcome Card is missing on MSB Web Home Page\");\n\t\t}\n\t\t// Concating error messages from messages array to errormsg string\n\t\terrormsg = \"\";\n\t\tmessages.forEach(function (item) { // Loop through Messages Array\n\t\t\terrormsg = errormsg + \" \" + item + \"\\n\"; \n\t\t});\n\t\t// Assertion for errormsg equals ''\n\t\texpect(errormsg).to.equal('')\n\t\t//await page.waitForTimeout(3000);",
+              "err": {},
+              "uuid": "2a51cec9-1582-4bc8-abb4-32ad61834d87",
+              "parentUUID": "6bdd6917-34a1-4e2d-8cd0-99c6d0793d97",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-1035 *** Check Be Part of the Conversation popup on home page",
+              "fullTitle": "MSB Web Home page TC-1035 *** Check Be Part of the Conversation popup on home page",
+              "timedOut": false,
+              "duration": 1410,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var messages = []; // Declared messages array to hold the errors\n\t\t//await page.waitFor(5000); // Waited for 5 seconds\n\t\ttry {\n\t\t\tawait page.waitForSelector(\"shadow/.reply-link\", {\n\t\t\t\tvisible: true,\n\t\t\t  });\n\t\t\tconst reply = await page.$(\"shadow/.reply-link\"); \n\t\t\treply.click();\n\t\t\t\n\t\t\t// Checking the header of the popup\n\t\t\ttry {\n\t\t\t\tawait page.waitForSelector(\"shadow/div.download-form-heading\", {\n\t\t\t\t\tvisible: true,\n\t\t\t\t  });\n\t\t\t\t// Located header of the popup\n\t\t\t\tconst popupHeader = await page.$(\"shadow/div.download-form-contents > div.download-form-heading\"); \n\t\t\t\t\n\t\t\t\t// Found header-text\n\t\t\t\tconst headerTxt = await page.evaluate(popupHeader => popupHeader.innerText, popupHeader);\n\t\t\t\tconsole.log(headerTxt); // For display header-text in console\n\t\t\t\t// Checking if header-text is not as per requirement, Add error message to messages \n\t\t\t\tif (String(headerTxt).indexOf(\"Be Part of the Conversation\") == -1) {\n\t\t\t\t\tmessages.push(\"Get it on Google Play button is not redirecting to correct URL\");\n\t\t\t\t}\n\t\t\t} catch (e) { \n\t\t\t\t// Error will be catch here if element for header-text is not located, then adding error message to messages\n\t\t\t\tmessages.push(\"Header text is missing on MSB Web Home Page\" + console.log(e));\n\t\t\t}\n\t\t\t// Closing the popup\n\t\t\ttry {\n\t\t\t\tawait page.waitForSelector(\"shadow/together-close-icon\", {\n\t\t\t\t\tvisible: true,\n\t\t\t\t  });\n\t\t\t\t// To locate close button for the Popup\n\t\t\t\tconst closeBtn = await page.$(\"shadow/together-close-icon\"); \n\t\t\t\t\n\t\t\t\t// For click on close button\n\t\t\t\tawait closeBtn.click();\n\t\t\t\t\n\t\t\t} catch (e) {\n\t\t\t\t// Error will be catch here if element for close button is not located, then adding error message to messages\n\t\t\t\tmessages.push(\"Close button is missing for Be part of the Conversation popup\" + console.log(e));\n\t\t\t}\n\t\t} catch (e) {\n\t\t\t// Error will be catch here if element for reply link is not located, then adding error message to messages\n\t\t\tmessages.push(\"Reply link is missing on 1st chat bubble on MSB Web Home Page\" + console.log(e));\n\t\t}\n\t\t// Concating error messages from messages array to errormsg string\n\t\terrormsg = \"\";\n\t\tmessages.forEach(function (item) { // Loop through messages Array\n\t\t\terrormsg = errormsg + \" \" + item + \"\\n\"; \n\t\t});\n\t\t// Assertion for errormsg equals ''\n\t\texpect(errormsg).to.equal('')",
+              "err": {},
+              "uuid": "f3f3e325-6cfe-4938-bbc7-c798eaf597e8",
+              "parentUUID": "6bdd6917-34a1-4e2d-8cd0-99c6d0793d97",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-1045 and TC-1047 *** Locate and verify \"download on the app store\" button and \"Get it on the \"Google Play\" button on the Feed Card - Download prompt",
+              "fullTitle": "MSB Web Home page TC-1045 and TC-1047 *** Locate and verify \"download on the app store\" button and \"Get it on the \"Google Play\" button on the Feed Card - Download prompt",
+              "timedOut": false,
+              "duration": 5477,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var messages = []; // Array to hold error messages\ntry {\n\tawait page.waitForSelector(\"shadow/main\");\n\tawait page.evaluate(_ => {\n\t\t// To scroll the page upto Feed Card - Download prompt\n\t\ttstt=document.querySelector(\"app-feed\").shadowRoot.querySelector(\"ion-content\").shadowRoot.querySelector(\"main\");\n\t\ttstt.scrollTop=3500; // For scrolling at specific place\n\t\t});\n\t// Locate Feed Card - Download prompt\n\tawait page.waitForSelector(\"shadow/together-download-card\", {\n\t\tvisible: true,\n\t  });\n\tconst downloadCard = await page.$(\"shadow/together-download-card\");\n\ttry {\n\t\tawait page.waitForSelector(\"shadow/div.link-container > div > a:nth-child(1)\", {\n\t\t\tvisible: true,\n\t\t  });\n\t\t// Located App store button from Feed Card - Download prompt\n\t\tconst AppStoreBtn = await page.$(\"shadow/div.link-container > div > a:nth-child(1)\");\n\t\n\t\t// To deal with new tab opened by clicking link that oepening the webpage in new tab\n\t\tconst newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));  // declare promise\n\t\t\n\t\tawait AppStoreBtn.click(); // Clicked on the button\n\t\t\n\t\tconst page2 = await newPagePromise; // Define New browser tab\n\t\tlet pages = await browser.pages(); // To find out opened tabs from browser\n\t\t// Checking the URL of the webpage opened in new tab is for App Store, If it's not then add the error message in messages\n\t\tif (String(pages[2].url()).indexOf(\"https://apps.apple.com/us/app/id1040195462?mt=8\") == -1) {\n\t\t\tmessages.push(\"Download on the App Store button is not redirecting to correct URL\");\n\t\t}\n\t\tawait pages[2].close(); // Closed newly Opened tab\n\t} catch (e) {\n\t\t// If App Store button inside \"Feed Card - Download prompt\" is not located, Error will be catch here & So we are adding error message to messages \n\t\tmessages.push(\"Download on the App Store button inside Feed Card - Download prompt is missing on MSB Web Home Page\" + console.log(e));\n\t}\n\t// Click get it on Google Play button and check that correct page is opening \n\ttry {\n\t\tawait page.waitForSelector(\"shadow/div.link-container > div > a:nth-child(2)\", {\n\t\t\tvisible: true,\n\t\t  });\n\t\t// Located Google Play button inside Feed Card - Download prompt \n\t\tconst googlePlayBtn = await page.$(\"shadow/div.link-container > div > a:nth-child(2)\");\n\t\t\n\t\t// To deal with new tab opened by clicking link that opening then webpage in new tab\n\t\tconst newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));  // declare promise\n\t\tawait googlePlayBtn.click(); // For click on Google Play Button\n\t\n\t\tconst page2 = await newPagePromise; // For define new tab\n\t\tlet pages = await browser.pages(); // To find number of opened tabs\n\t\t// Checking the URL of the webpage opened in new tab is for Play Store, If it's not then add the error message in messages\n\t\tif (String(pages[2].url()).indexOf(\"https://play.google.com/store/apps/details?id=com.healthline.msbuddy\") == -1) {\n\t\t\tmessages.push(\"Get it on Google Play button is not redirecting to correct URL\");\n\t\t}\n\t\tawait pages[2].close(); // Closed newly opened tab\n\t} catch (e) {\n\t\t// If Google Play inside Feed Card - Download prompt is not located, Error will be catch here & So we are adding error message to messages \n\t\tmessages.push(\"Get it on Google Play button inside download Card is missing on MSB Web Home Page\" + console.log(e));\n\t}\n} catch (e) { // Catch for Feed Card - Download prompt, If Feed Card - Download prompt section is not located Add error message to messages\n\tmessages.push(\"Download the app card is missing on MSB Web Home Page\" + console.log(e));\n}\n// Concating error messages from messages array to errormsg string\nerrormsg = \"\";\nmessages.forEach(function (item) { // Loop through Messages Array\n\terrormsg = errormsg + \" \" + item + \"\\n\";\n});\nconsole.log(errormsg);\n// Assertion for errormsg equals ''\nexpect(errormsg).to.equal('')\n//await page.waitForTimeout(3000);",
+              "err": {},
+              "uuid": "31e61e5e-b1d6-4b45-bddd-03465bcba810",
+              "parentUUID": "6bdd6917-34a1-4e2d-8cd0-99c6d0793d97",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-1046 & TC-1048 *** Locate and verify \"Get it on the \"Google Play\" button and \"Download on the app store\" button on \"User Quotes\" area",
+              "fullTitle": "MSB Web Home page TC-1046 & TC-1048 *** Locate and verify \"Get it on the \"Google Play\" button and \"Download on the app store\" button on \"User Quotes\" area",
+              "timedOut": false,
+              "duration": 4845,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var messages = []; // Declared messages array to hold the errors\ntry { // Try for user Quote section\n\tawait page.waitForSelector(\"shadow/together-rating-carousel\", {\n\t\tvisible: true,\n\t  });\n\t// Located User Quote section\n\tconst userQuote = await page.$(\"shadow/together-rating-carousel\");\n\t\n\t// Checking User Quote section\n\ttry { \n\t\t// Located for User Quote title\n\t\tconst userQuoteCardTitle = await userQuote.$(\"shadow/div.title-container\");\n\t\n\t\t// Found the text of User Quote section\n\t\tconst quoteTitleTxt = await page.evaluate(userQuoteCardTitle => userQuoteCardTitle.innerText, userQuoteCardTitle);\n\t\t// To display the text inside console\n\t\tconsole.log(\"User quote title -->\" + quoteTitleTxt);\n\t\t// To checking that Heading text of User Quote is exactly as per requirement, If not add error message to messages array\n\t\tif (String(quoteTitleTxt).indexOf(\"USER QUOTE\") == -1) {\n\t\t\tmessages.push(\"Title inside User Quote Card is not proper on MSB Web Home Page\");\n\t\t}\n\t} catch (e) {\n\t\t// If header inside User Quote section is not located, Error will be catch here & So we are adding error message to messages\n\t\tmessages.push(\"Title missing inside User Quote Card on MSB Web Home Page\" + console.log(e));\n\t}\n\t// Click download on App Store button and check that correct page is opening\n\ttry {\n\t\tawait page.waitForSelector(\"shadow/div.store-box\", {\n\t\t\tvisible: true,\n\t\t  });\n\t\t// Located App Store button from User Quote section\n\t\tconst AppStoreBtn = await userQuote.$(\"shadow/div.store-box > a:nth-child(1)\");\n\t\n\t\t// To deal with new tab opened by clicking link that opening the webpage in new tab\n\t\tconst newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));  // declare promise\n\t\t\n\t\tawait AppStoreBtn.click(); // Clicked on the button\n\t\n\t\tconst page2 = await newPagePromise; // Define  New browser tab\n\t\tlet pages = await browser.pages(); // To find out opened tabs of browser\n\t\t// Checking the URL of the webpage opened in new tab is for App Store, It it's not then add the error message in messages\n\t\tif (String(pages[2].url()).indexOf(\"https://apps.apple.com/us/app/id1040195462?mt=8\") == -1) {\n\t\t\tmessages.push(\"Download on the App Store button is not redirecting to correct URL\");\n\t\t}\n\t\tawait pages[2].close(); // Closed newly opened tab\n\t} catch (e) {\n\t\t// If App Store button inside User Quote section is not located, Error will be catch here & so we are adding error message to messages\n\t\tmessages.push(\"Download on the App Store button inside User Quote Card is missing on MSB Web Home Page\" + console.log(e));\n\t}\n\t// Click get it on Google Play button and check that correct page is opening \n\ttry {\n\t\t// Located Google Play button inside User Quote section\n\t\tconst googlePlayBtn = await userQuote.$(\"shadow/div.store-box > a:nth-child(2)\");\n\t\t// To deal with new tab opened by clicking link that opening the webpage in new tab\n\t\tconst newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));  // declare promise\n\t\tawait googlePlayBtn.click(); // For click on Google Play Button\n\t\n\t\tconst page2 = await newPagePromise; // For define new tab\n\t\tlet pages = await browser.pages(); // To find number of opened tabs\n\t\t// Checking the URL of the webpage opened in new tab is for Play Store, If it's not then add the error message in messages\n\t\tif (String(pages[2].url()).indexOf(\"https://play.google.com/store/apps/details?id=com.healthline.msbuddy\") == -1) {\n\t\t\tmessages.push(\"Get it on Google Play button is not redirecting to correct URL\");\n\t\t}\n\t\tawait pages[2].close(); // Closed newly opened tab\n\t} catch (e) {\n\t\t// If Google Play inside User Quote section is not located, Error will be catch here & So we are adding error message to messages\n\t\tmessages.push(\"Get it on Google Play button inside User Quote Card is missing on MSB Web Home Page\" + console.log(e));\n\t}\n} catch (e) { // Catch for User Quote section, If User Quote section is not located Add error message to messages\n\tmessages.push(\"User Quote card is missing on MSB Web Home Page\" + console.log(e));\n}\n// Concating error messages from messages array to errormsg string\nerrormsg = \"\";\nmessages.forEach(function (item) { // Loop through Messages Array\n\terrormsg = errormsg + \" \" + item + \"\\n\";\n});\n\nconsole.log(errormsg);\n// Assertion for errormsg equals ''\nexpect(errormsg).to.equal('')",
+              "err": {},
+              "uuid": "a51611b8-873d-49dc-9a5d-8480206dda7b",
+              "parentUUID": "6bdd6917-34a1-4e2d-8cd0-99c6d0793d97",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-997 and TC-1013 *** Locate Learn More and subscribe to the email and Assertion for Thanks Text Close the popup(Thanks Screen)",
+              "fullTitle": "MSB Web Home page TC-997 and TC-1013 *** Locate Learn More and subscribe to the email and Assertion for Thanks Text Close the popup(Thanks Screen)",
+              "timedOut": false,
+              "duration": 6694,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var messages = []; // Declared messages array to hold the errors\ntry { // Try for Learn more\n\tawait page.waitForSelector(\"shadow/main\", {\n\t\tvisible: true,\n\t  });\n\tawait page.evaluate(_ => {\n\t\t// To scroll the page upto Learn More\n\t\ttstt=document.querySelector(\"app-feed\").shadowRoot.querySelector(\"ion-content\").shadowRoot.querySelector(\"main\");\n\t\t tstt.scrollTop=3500; // For scrolling at specific place\n\t\t});\n\t\t\t\t\t\t\n\t\tawait page.waitForSelector(\"shadow/together-download-card\", {\n\t\t\tvisible: true,\n\t\t  });\n\t\t\t\t\t\n\t// Located Learn More link from Feed Card - Download prompt\n\tconst downloadCard=await page.$(\"shadow/together-download-card\");\n\tconst learMoreLink = await downloadCard.$(\"shadow/div.link-container > together-highlight-text > div\");\n\t\n\tawait learMoreLink.click(); // Clicked on Learn more link\n\ttry {\n\t\t//document.querySelector(\"#ion-overlay-4 > div.modal-wrapper.ion-overlay-wrapper.sc-ion-modal-md > app-learn-more\")\n\t\tawait page.waitForSelector(\"app-learn-more\", {\n\t\t\tvisible: true,\n\t\t  });\n\t\t// Located Learn More popup\n\t\tconst learmorePopup=await page.$(\"app-learn-more\");\n\t\ttry{\n\t\t\t// Located heading of Learn More overlay\n\t\t\tconst learmoreHeading=await page.$(\"shadow/div.email-form-heading\");\n\t\t\t//  Located TitleTxt of Learn More overlay\n\t\t\tconst learnmoreTitleTxt = await page.evaluate(learmoreHeading => learmoreHeading.innerText, learmoreHeading);\n\t\t\tconsole.log(\"Email popup title -->\" + learnmoreTitleTxt);\n\t\t\t\n\t\t\t// To checking that Title text Learn More is exactly as per requirement, If not add error message to messages array\n\t\t\tif (String(learnmoreTitleTxt).indexOf(\"Want to see more?\") == -1) {\n\t\t\t\tmessages.push(\"Title inside learn more popup is not proper on MSB Web Home Page\");\n\t\t\t}\n\t\t}catch(e){\n\t\t\t// If Title text inside Learn More is not located, Error will be catch here & So we are adding error message to messages array\n\t\t\tmessages.push(\"Title missing inside learn more popup on MSB Web Home Page\");\n\t\t}\n\t\ttry{\n\t\t\tawait page.waitForSelector(\"shadow/together-email\", {\n\t\t\t\tvisible: true,\n\t\t\t  });\n\t\t\t// Located Email field inside Learn More overlay\n\t\t\tconst learmoreInput=await page.$(\"shadow/div.together-input > input[type=text]\");\n\t\t\t// For type Email-Address in Email field inside Learn More overlay\n\t\t\tawait learmoreInput.type(\"dipti.gorecha@prodigyinfosoft.com\");\n\t\t}catch(e){\n\t\t\t// If Email field inside Learn More overlay is not located, Error will be catch here & so we are adding error message to messages\n\t\t\tmessages.push(\"Email Text box is missing inside learn more popup on MSB Web Home Page\");\n\t\t}\n\t\ttry{\n\t\t\t// Located Subsccribe button inside Learn More overlay\n\t\t\tawait page.waitForSelector(\"shadow/together-email\", {\n\t\t\t\tvisible: true,\n\t\t\t  });\n\t\t\tconst emailPopup=await page.$(\"shadow/together-email\");\n\t\t\tconst subscribeBtn=await emailPopup.$(\"shadow/together-button\");\n\t\t\tawait subscribeBtn.click(); // Clicked on Subscribe button\n\t\t}catch(e){\n\t\t\t// If Subscribe button inside Learn More overlay is not located, Error will be catch here & so we are adding error message to messages\n\t\t\tmessages.push(\"Subscribe button is missing inside learn more popup on MSB Web Home Page\");\n\t\t}\n\t\ttry{\n\t\t\tawait page.waitForSelector(\"shadow/div.signup-thanks-heading\", {\n\t\t\t\tvisible: true,\n\t\t\t  });\n\t\t\t// Located Thanks screen \n\t\t\tconst ThanksText=await page.$(\"shadow/div.signup-thanks-heading\");\n\t\t\t// Located Thanks text in thanks screen \n\t\t\tconst ThanksTxt = await page.evaluate(ThanksText => ThanksText.innerText, ThanksText);\n\t\t\tconsole.log(\"Thanks Text -->\" + ThanksTxt);\n\t\t\t\n\t\t\t// Checking the text of the thanks screen, If it's not as per requirement then Error will be catch here & so we are adding error message to messages\n\t\t\tif (String(ThanksTxt).indexOf(\"Thanks for signing up\") == -1) {\n\t\t\t\tmessages.push(\"Proper Thanks message is not displaying after submittig email from learn more popup is not proper on MSB Web Home Page\");\n\t\t\t}\n\t\t}catch(e){\n\t\t\t// Catch for Thanks message, If thanks message is not located Add error message to messages\n\t\t\tmessages.push(\"Thanks message is not displaying after submitting email from learn more popup on MSB Web Home Page\");\n\t\t}\n\t\ttry{\n\t\t\tawait page.waitForSelector(\"shadow/div > div > together-close-icon\", {\n\t\t\t\tvisible: true,\n\t\t\t  });\n\t\t\t// Located Close Button\n\t\t\tconst closeBtn=await page.$(\"shadow/div > div > together-close-icon\");\n\t\t\tawait closeBtn.click(); // Clicked on close button\n\t\t\t//await page.waitForTimeout(2000); // Waited for 2 seconds\n\t\t}catch(e){\n\t\t\t// If Close button is not located, then Error will be catch here & so we are adding error message to messages\n\t\t\tmessages.push(\"Close button is missing inside learn more popup on MSB Web Home Page\");\n\t\t}\n\t} catch (e) { \n\t\t// If Learn more popup is not opened, then Error will be catch here & so we are adding error message to messages\n\t\tmessages.push(\"Learn More Popup is not displaying on clicking learn More link from Download Card on MSB Web Home Page\" + console.log(e));\n\t}\n} catch (e) {\n\t// If Learn More link is not located, then Error will be catch here & so we are adding error message to messages\n\tmessages.push(\"Learn More link inside Download Card is missing on MSB Web Home Page\");\n}\nerrormsg = \"\";\nmessages.forEach(function (item) { // Loop through Messages array\n\terrormsg = errormsg + \" \" + item + \"\\n\";\n});\nconsole.log(errormsg);\n// Assertion for errormsg equals ''\nexpect(errormsg).to.equal('')",
+              "err": {},
+              "uuid": "5c246cf3-6e13-4055-8acf-5a5942683c8f",
+              "parentUUID": "6bdd6917-34a1-4e2d-8cd0-99c6d0793d97",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-996 *** Locate Live discussion group,  drill down to the group, scroll and locate \"See all replies...\"",
+              "fullTitle": "MSB Web Home page TC-996 *** Locate Live discussion group,  drill down to the group, scroll and locate \"See all replies...\"",
+              "timedOut": false,
+              "duration": 32009,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "var messages = []; // Declared messages array to hold the errors\n\ttry { // Try for Live Discussion group\nawait page.waitForSelector(\"shadow/ion-router-link:nth-child(3) > together-group-list-item\", {\n\tvisible: true,\n  });\nconst buttonHandle=await page.$(\"shadow/ion-router-link:nth-child(3) > together-group-list-item\");\npage.evaluate(el => el.click(), buttonHandle);\n//await buttonHandle.click();\nawait page.waitForSelector(\"app-group\", {\n\tvisible: true,\n  });\n        const groupPage=await page.$(\"app-group\");\nawait page.waitForSelector(\"shadow/together-group-title\", {\n\tvisible: true,\n  });\n// Located group channel title\nconst titleBox=await groupPage.$(\"shadow/together-group-title\");\nawait page.waitForSelector(\"shadow/div >.group-title-label\", {\n\tvisible: true,\n  });\nconst groupChannelTitle=await groupPage.$(\"shadow/.group-title-label\");\n// Located groupTitleText\nconst groupTitleTxt = await page.evaluate(groupChannelTitle => groupChannelTitle.innerText, groupChannelTitle);\n\t\tconsole.log(\"Group Channel Title -->\" + groupTitleTxt);\n\t\tif (String(groupTitleTxt).indexOf(\"Live Discussions\") == -1) {\n\t\t\tmessages.push(\"User not enters into Group Channel page on clicking 'Live Discussions' from left navigation on MSB Web Home Page\");\n\t\t}\n        try { \n\tawait page.waitForSelector(\"shadow/together-reply\", {\n\t\tvisible: true,\n\t  });\n\tconst SeeAllLnks = await groupPage.$$(\"shadow/together-reply\");\n\n\tconsole.log(SeeAllLnks.length);\n\tvar i;\n\tfor (i = 0; i < SeeAllLnks.length; i++) {\n\t\t\tconst SeeAllLnk = await SeeAllLnks[i].$(\"shadow/.more-link\");\n\t\t\tpage.evaluate(el => el.click(), SeeAllLnk);\n\t\t\tconsole.log(\"See all Comments clicked...\");\n\t\t\tbreak;\n\t}\n\t\ntry { \n\t// Click back link from All Replies screen\n\tawait page.waitForSelector(\"shadow/.thread-title-link-label\", {\n\t\tvisible: true,\n\t  });\n\tconst backLnk = await page.$(\"shadow/.thread-title-link-label\");\n\tconst lnkTxt1 = await page.evaluate(backLnk => backLnk.innerText, backLnk);\n\tconsole.log(lnkTxt1);\n\tawait backLnk.click();\n\tconsole.log(\"back is clicked\");\n} catch (e) {\n\tconsole.log(e);\n\t// Error will be catch here if element for 'Back' link is not located, then adding error message to messages\n\tmessages.push(\"Back Link is missing on All Replies screern\");\n}\n\n\t} catch (e) {\nconsole.log(e);\n// Error will be catch here if element for 'See all replies' is not located, then adding error message to messages\nmessages.push(\"Unable to locate 'See all replies' Link from thread on Group Channel page\");\n\t}\ntry {\n\tawait page.waitForSelector(\"shadow/ion-router-link:nth-child(1) > together-nav-item\", {\n\t\tvisible: true,\n\t  });\n\t// Located Home link\n\tconst homePageHandle=await page.$(\"shadow/ion-router-link:nth-child(1) > together-nav-item\");\n    await homePageHandle.click(); // Clicked on Home link\n} catch (e) {\n\t// Error will be catch here if element for 'Home' link is not located, then adding error message to messages\n\tmessages.push(\"Problem locating Home link from Left Navigation on Group Channel Page\");\n}\n\n\t} catch (e) {\nconsole.log(e);\n// Error will be catch here if element for 'Live Discussion' group channel is not located, then adding error message to messages\nmessages.push(\"Problem locating Live Discussion link from Left Navigation on MSB Web home Page\");\n\t}\n\terrormsg=\"\";\n\tmessages.forEach(function (item) {\nerrormsg = errormsg + \" \" + item + \"\\n\";\n\t});\n\t// Assertion for errormsg equals ''\n\texpect(errormsg).to.equal('')",
+              "err": {
+                "message": "AssertionError: expected ' Unable to locate \\'See all replies\\' Link from thread on Group Channel page\\n' to equal ''",
+                "estack": "AssertionError: expected ' Unable to locate \\'See all replies\\' Link from thread on Group Channel page\\n' to equal ''\n    at Context.<anonymous> (test\\sample.spec.js:891:22)",
+                "diff": "-  Unable to locate 'See all replies' Link from thread on Group Channel page\n"
+              },
+              "uuid": "5f28f9f5-0f0f-45b2-96b7-c5ba059da658",
+              "parentUUID": "6bdd6917-34a1-4e2d-8cd0-99c6d0793d97",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-1013 *** Locate Discover Carousal",
+              "fullTitle": "MSB Web Home page TC-1013 *** Locate Discover Carousal",
+              "timedOut": false,
+              "duration": 2063,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var messages = []; // Declared messages array to hold the errors\ntry { // Try for Learn more\n\tawait page.waitForSelector(\"shadow/main\", {\n\t\tvisible: true,\n\t  });\n\tawait page.evaluate(_ => {\n\t\t// To scroll the page upto Learn More\n\t\ttstt=document.querySelector(\"app-feed\").shadowRoot.querySelector(\"ion-content\").shadowRoot.querySelector(\"main\");\n\t\t tstt.scrollTop=6500; // For scrolling at specific place\n\t\t});\n\t\tawait page.waitForSelector(\"shadow/together-discover-carousel\", {\n\t\t\tvisible: true,\n\t\t  });\n\t\tconst discCarousal = await page.$(\"shadow/together-discover-carousel\");\n\t\t\n\t\ttry{\n\t\t\tawait page.waitForSelector(\"shadow/.discover-carousel-header .title-container\", {\n\t\t\t\tvisible: true,\n\t\t\t  });\n\t\t\tconst discTitle = await page.$(\"shadow/.discover-carousel-header .title-container\");\n\t\t\tconst discTxt = await page.evaluate(discTitle => discTitle.innerText, discTitle);\n\t\t\tconsole.log(discTxt);\n\t\t\tif(String(discTxt)==\"\"){\n\t\t\t\tmessages.push(\"Discover carousal title should not empty on Feed Page\");\n\t\t\t}\n\t\t}catch(e){\n\t\t\tmessages.push(\"Discover carousal title missing on Feed Page\");\n\t\t}\n\t\ttry{\n\t\t\tawait page.waitForSelector(\"shadow/.discover-description\", {\n\t\t\t\tvisible: true,\n\t\t\t  });\n\t\t\tconst discreption = await page.$(\"shadow/.discover-description\");\n\t\t\tconst disciptTxt = await page.evaluate(discreption => discreption.innerText, discreption);\n\t\t\tconsole.log(disciptTxt);\n\t\t\tif(String(disciptTxt)==\"\"){\n\t\t\t\tmessages.push(\"Discover carousal description should not empty on Feed Page\");\n\t\t\t}\n\t\t}catch(e){\n\t\t\tmessages.push(\"Discover carousal description missing on Feed Page\");\n\t\t}\t\t\t\t\n\n\t\ttry{\n\t\t\tawait page.waitForSelector(\"shadow/ion-slides ion-slide\", {\n\t\t\t\tvisible: true,\n\t\t\t  });\n\t\t\tconst slides = await page.$$(\"shadow/ion-slides ion-slide\");\n\t\t\t\n\t\t\tconsole.log(slides.length);\n\t\t\tif(slides.length<=0){\n\t\t\t\tmessages.push(\"No Slide is displaying inside Discover carousal on Feed Page\");\n\t\t\t}\n\t\t}catch(e){\n\t\t\tmessages.push(\"No Slide is displaying inside Discover carousal on Feed Page\");\n\t\t}\t\n\n\n\t} catch (e) {\n\t\t// Error will be catch here if element for 'Home' link is not located, then adding error message to messages\n\t\tmessages.push(\"Discover carousal is missing on Feed Page\");\n\t}\n\n\n\terrormsg=\"\";\n\tmessages.forEach(function (item) {\n\t\terrormsg = errormsg + \" \" + item + \"\\n\";\n\t});\n\texpect(errormsg).to.equal('')",
+              "err": {},
+              "uuid": "250a0751-5ed1-48fa-82f4-9c776fb2bfc6",
+              "parentUUID": "6bdd6917-34a1-4e2d-8cd0-99c6d0793d97",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "9ad32e6c-0211-4e6f-bdc6-35bff2135348",
+            "2a51cec9-1582-4bc8-abb4-32ad61834d87",
+            "f3f3e325-6cfe-4938-bbc7-c798eaf597e8",
+            "31e61e5e-b1d6-4b45-bddd-03465bcba810",
+            "a51611b8-873d-49dc-9a5d-8480206dda7b",
+            "5c246cf3-6e13-4055-8acf-5a5942683c8f",
+            "250a0751-5ed1-48fa-82f4-9c776fb2bfc6"
+          ],
+          "failures": [
+            "e63d1b8f-e5e3-4df7-858f-8356babe637e",
+            "5f28f9f5-0f0f-45b2-96b7-c5ba059da658"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 109815,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 90000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 90000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "8.2.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "5.1.0"
+    }
+  }
+}
